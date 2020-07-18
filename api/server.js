@@ -5,8 +5,6 @@ const path = require('path');
 
 const app = express();
 
-const secret = 'mysecretsshhh';
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
