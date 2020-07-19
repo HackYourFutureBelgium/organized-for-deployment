@@ -1,6 +1,29 @@
-const sequelize = require('../db/db.js');
+const connection = require('../db/db.js');
 
-// Defines the models on sequelize by reference
-const User = require('../models/User.js');
+const usersStatement = `
+  CREATE TABLE \`users\` (
+    \`email\` varchar(255) NOT NULL,
+    \`password\` text NOT NULL,
+    PRIMARY KEY (\`email\`)
+  );
+`;
 
-sequelize.sync({ force: true });
+
+const createUserTable = async () => {
+  connection.query(
+    usersStatement,
+    [],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log('created users table');
+    }
+  );
+}
+
+createUserTable()
+  .then(() => {
+    process.exit();
+  })

@@ -1,11 +1,12 @@
-// Make a connection with the database through sequalize
+const mysql = require('mysql2');
 
-const { Sequelize } = require('sequelize');
 const { DB_HOST, DB_NAME, DB_USER, DB_PASSWORD } = require('../config');
 
-const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+const connection = mysql.createConnection({
     host: DB_HOST,
-    dialect: 'mysql'
+    user: DB_USER,
+    password: DB_PASSWORD,
+    database: DB_NAME
 });
 
-module.exports = sequelize;
+module.exports = connection;

@@ -40,7 +40,8 @@ app.post('/authenticate', async (req, res) => {
   let user = null;
 
   try {
-    user = await User.findOne({where: {email}});
+    user = await User.findByEmail(email);
+    console.log(user);
   } catch (e) {
     res.sendStatus(401)
     return;
