@@ -2,7 +2,7 @@ const { cryptPassword } = require('../utils/encryption');
 const User = require('../models/User.js');
 
 const createUsers = async () => {
-  return User
+  return await User
     .findOrCreate({
       where: {email: 'john@doe.com'},
       defaults: {password: await cryptPassword('Azerty123')}
