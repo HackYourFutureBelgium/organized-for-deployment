@@ -2,21 +2,21 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
-const CommentsSchema = new Schema( {
-    body:{
-    type: String,
-    required: true
+const CommentsSchema = new Schema({
+    body: {
+        type: String,
+        required: true
     },
     authorId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
     },
     date: {
-       type: Date,
-       default: Date.now()
+        type: Date,
+        default: Date.now()
     }
- })
+})
 
 
 
@@ -24,9 +24,9 @@ const CommentsSchema = new Schema( {
 const SchoolSchema = new Schema({
     name: {
         type: String,
-        required:[true, 'Name field is required']
+        required: [true, 'Name field is required']
     },
- 
+
     location: {
         type: {
             type: String,
@@ -38,51 +38,65 @@ const SchoolSchema = new Schema({
             required: true
         }
     },
- 
+
     phone: {
         type: String,
-        required:[true, 'Phone number field is required']
+        required: [true, 'Phone number field is required']
     },
- 
-    email:{
+
+    email: {
         type: String,
-        required:[true, 'Email is required']
+        required: [true, 'Email is required']
     },
- 
+
     rating: {
         type: Number,
-        required:false
+        required: false
     },
- 
-    types:{
+
+    types: {
         type: String,
-        enum : ['Public','Private'],
-        required:[true, 'Types is required']
+        enum: ['Public', 'Private'],
+        required: [true, 'Types is required']
     },
- 
-    areas:{
+
+    areas: {
         type: [String],
-         enum : ['General','Technical','Vocational','Art Secondary Education' ],
-        required:[true, 'Areas is required']
+        enum: ['General', 'Technical', 'Vocational', 'Art Secondary Education'],
+        required: [true, 'Areas is required']
     },
-    network:{
+    network: {
         type: String,
-         enum : ['GO Network','Catholic Network','Municipality Schools','Private schools' ],
-        required:[true, 'Network is required']
+        enum: ['GO Network', 'Catholic Network', 'Municipality Schools', 'Private schools'],
+        required: [true, 'Network is required']
     },
     languageClasses: {
-       type: Boolean,
-       required:[true, 'Language classes is required']
-   } ,
-    comments: [CommentsSchema],
-   photo: {
-       type: String,
-       required:[true, 'Photo is required']
-   },
- 
-   website: {
-       type: String,
-       required:[true, 'Website is required']
+        type: Boolean,
+        required: [true, 'Language classes is required']
+    },
+
+    comments: [{
+        userid: { type: String },
+        body: {
+            type: String,
+            required: [true, 'Comment body is required'],
+            minlenght: 1,
+            maxlength: 300
+        },
+        created: {
+            type: Date,
+            default: Date.now()
+        }
+    }],
+
+    photo: {
+        type: String,
+        required: [true, 'Photo is required']
+    },
+
+    website: {
+        type: String,
+        required: [true, 'Website is required']
     },
 
     adress: {
@@ -102,7 +116,7 @@ const SchoolSchema = new Schema({
         },
 
     },
- 
+
     date: {
         type: Date,
         default: Date.now()
@@ -110,8 +124,8 @@ const SchoolSchema = new Schema({
 
 })
 
-SchoolSchema.index({location: '2dsphere'});
+SchoolSchema.index({ location: '2dsphere' });
 SchoolSchema.index({ adress: 1, name: 1 }, { unique: true });
-const School = mongoose.model('School',SchoolSchema, 'schools');
+const School = mongoose.model('School', SchoolSchema, 'schools');
 
 module.exports = School;
