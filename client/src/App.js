@@ -1,28 +1,25 @@
-import React, { Component } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
-import withAuth from './withAuth';
-import Home from './Home';
-import Secret from './Secret';
-import Login from './Login';
+import React from 'react';
+import './App.css';
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './components/pages/Home';
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/secret">Secret</Link></li>
-          <li><Link to="/login">Login</Link></li>
-        </ul>
-
+function App() {
+  return (
+    <>
+      <Router>
+        <Navbar />
+       
         <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/secret" component={withAuth(Secret)} />
-          <Route path="/login" component={Login} />
+        <Route path='/' exact component={Home} />
+     
         </Switch>
-      </div>
-    );
-  }
+          <Footer />
+      </Router>
+     
+    </>
+  );
 }
 
 export default App;
