@@ -1,62 +1,93 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const bcrypt = require('bcryptjs');
 
-
-// Create user models and Schemas
-const UserSchema = new Schema({
-    firstname: {
+const UserSchema = new mongoose.Schema({
+    firstName: {
         type: String,
         trim: true,
         maxlength: 32,
         required:[true, 'Name field is required']
     },
-
-    lastname: {
+    lastName: {
         type: String,
         trim: true,
         maxlength: 32,
         required:[true, 'Last name field is required']
     },
-    password:{
-        type: String,
-        required:[true, 'Password is required']
-    },
-    email:{
-        type: String,
-        trim: true,
-        required:[true, 'Email is required'],
-        unique: true
-    },
-    phone:{
-        type: Number,
-        required:false
+    email :{
+        type : String,
+        required : true,
+        min : 6,
+        max : 15
     },
     
-    location: {
-        type: {
-            type: String,
-            enum: ['Point'],
-            required: true
+    password : {
+        type : String,
+        required : true
+    },
+    role : {
+        type : String,
+        enum : ['user','admin', 'school'],
+        required: true
+    },
+    address: {
+        postcode: {
+            type: Number,
+            required: [true, 'Post code is required']
         },
-        coordinates: {
-            type: [Number],
-            required: true
-        }
-    },
+        country: {
+            type: String,
+            required: [true, 'Country is required']
+        },
+        city: {
+            type: String,
+            required: [true, 'City is required']
+        },
+        street: {
+            type: String,
+            required: [true, 'Street is required']
+        },
+        building: {
+            type: Number,
+            required: [true, 'Building No is required']
+        },
 
-    lists:{
-        type: [],
-        required:false
     },
-
+    listOfSchools : [{type : mongoose.Schema.Types.ObjectId, ref: 'School'}],
     date: {
         type: Date,
         default: Date.now()
     }
+});
 
-})
+UserSchema.pre('save',function(next){
+    if(!this.isModified('password'))
+        return next();
+    bcrypt.hash(this.password,10,(err,passwordHash)=>{
+        if(err)
+            return next(err);
+        this.password = passwordHash;
+        next();
+    });
+});
 
-UserSchema.index({location: '2dsphere'});
-const User = mongoose.model('user', UserSchema);
+UserSchema.methods.comparePassword = function(password,cb){
+    bcrypt.compare(password,this.password,(err,isMatch)=>{
+        if(err)
+            return cb(err);
+        else{
+            if(!isMatch)
+                return cb(null,isMatch, { message: 'Password incorrect! Please try again.' });
+            return cb(null,this);
+        }
+    });
+}
 
-module.exports = User;
+UserSchema.methods.isValidPassword= async function(password){
+        const compare = await bcrypt.compare(password, this.password);
+        console.log(compare);
+        return compare;
+}
+
+
+module.exports = mongoose.model('User',UserSchema);
