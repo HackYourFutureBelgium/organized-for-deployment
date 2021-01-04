@@ -26,23 +26,6 @@ passport.use(new JwtStrategy({
     });
 }));
 
-// authenticated local strategy using username and password
-// passport.use(new LocalStrategy({usernameField: 'email'},(email,password,done)=>{
-//     User.findOne({email},(err,user)=>{
-//         // something went wrong with database
-//         if(err)
-//             return done(err);
-//         // if no user exist
-//         if(!user){
-//             return done(null, false, {message: 'Incorrect username.' });
-//         }
-//         // check if password is correct
-//         user.comparePassword(password,done);
-        
-//     });
-// }));
-
-
 passport.use('login', new LocalStrategy({
     usernameField : 'email',
     passwordField : 'password'

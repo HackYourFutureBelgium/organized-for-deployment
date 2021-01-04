@@ -26,7 +26,7 @@ const Login = props=>{
                 toast.success("Logged in Successfully");
                 authContext.setUser(user);
                 authContext.setIsAuthenticated(isAuthenticated);
-                props.history.push('/todos');
+                props.history.push('/myschools');
                 
                 
             }else{
@@ -35,7 +35,6 @@ const Login = props=>{
             
         }).catch(err=>{
             console.log(err);
-            // toast.error(err.response.data.errors);
         });
     }
 
