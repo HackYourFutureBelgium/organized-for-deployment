@@ -18,7 +18,7 @@ function Navbar() {
               <div to = "/"className = "navbar-logo" >
               
                <Link to = "/"className = "navbar-logo" onClick={closeMobileMenu} >
-                 <img src="/images/Logo.png" alt="logo"/>
+                 <img src="/images/Logo-blue.png" alt="logo"/>
                 </Link>  
               
               </div>
