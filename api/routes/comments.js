@@ -1,8 +1,9 @@
 const express = require('express');
-const controllers = require('../controllers/controller');
+const controllers = require('../controllers/interaction_controller');
 
 const router = express.Router();
 
-router.route('/new').post(controllers.saveComment);
+router.route('/').post(controllers.saveComment)
+    .get(controllers.getComments);
 
 module.exports = { new_comment: router };

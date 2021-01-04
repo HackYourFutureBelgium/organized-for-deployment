@@ -2,25 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
-const CommentsSchema = new Schema({
-    body: {
-        type: String,
-        required: true
-    },
-    authorId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true
-    },
-    date: {
-        type: Date,
-        default: Date.now()
-    }
-})
-
-
-
-// Create user models and Schemas
+// Create School Schema and model
 const SchoolSchema = new Schema({
     name: {
         type: String,
@@ -72,22 +54,14 @@ const SchoolSchema = new Schema({
     },
     languageClasses: {
         type: Boolean,
-        required: [true, 'Language classes is required']
+        // required: [true, 'Language classes is required']
+        default: true
     },
 
-    comments: [{
-        userid: { type: String },
-        body: {
-            type: String,
-            required: [true, 'Comment body is required'],
-            minlenght: 1,
-            maxlength: 300
-        },
-        created: {
-            type: Date,
-            default: Date.now()
-        }
-    }],
+    comments: {
+        type: Number,
+        default: 0
+    },
 
     photo: {
         type: String,
@@ -126,6 +100,7 @@ const SchoolSchema = new Schema({
 
 SchoolSchema.index({ location: '2dsphere' });
 SchoolSchema.index({ adress: 1, name: 1 }, { unique: true });
+
 const School = mongoose.model('School', SchoolSchema, 'schools');
 
 module.exports = School;
