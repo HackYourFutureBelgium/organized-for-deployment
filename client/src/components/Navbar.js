@@ -110,10 +110,9 @@ const Navbar = props => {
               <div className = "navbar-icon" >
               <div to = "/"className = "navbar-logo" >
               
-               <Link to = "/"className = "navbar-logo" onClick={closeMobileMenu} >
+              <Link to = "/"className = "navbar-logo" onClick={closeMobileMenu} >
                  <img src={Logo} alt="logo"/>
-                </Link>  
-              
+                </Link> 
               </div>
                     
               <div className = "menu-icon"
