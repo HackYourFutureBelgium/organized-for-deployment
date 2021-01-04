@@ -216,8 +216,10 @@ const Register = props=>{
                 </Form.Group>
                 <Form.Group as={Row} className="mt-5">
                 <Col sm="6" className="d-flex justify-content-center">
-                <Button href="/login" style={{background: '#000051', border: "none", margin: "10px", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 30px"}} size="lg"> Have an account?
-                </Button>
+                    <Link to="login">
+                    <Button href="/login" style={{background: '#000051', border: "none", margin: "10px", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 30px"}} size="lg"> Have an account?
+                    </Button>
+                    </Link>
                 </Col>
                 <Col sm="6" className="d-flex justify-content-center">
                 <Button style={{background: '#B71C1C', border: "none", margin: "10px", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 30px"}} type="submit" size="lg">
@@ -226,50 +228,6 @@ const Register = props=>{
                 </Col>
                 </Form.Group>
                 </Form>
-            {/* </Container> */}
-            
-
-            
-            {/* <form onSubmit={onSubmit}>
-                <h3>Please Register</h3>
-                <label htmlFor="name" className="sr-only">Name: </label>
-                <input type="text" 
-                       name="name" 
-                       value={user.name}
-                       onChange={onChange} 
-                       className="form-control" 
-                       placeholder="Enter Name"/>
-                <label htmlFor="email" className="sr-only">Email: </label>
-                <input type="email" 
-                       name="email" 
-                       value={user.email}
-                       onChange={onChange} 
-                       className="form-control" 
-                       placeholder="Enter Username"/>
-                <label htmlFor="password" className="sr-only">Password: </label>
-                <input type="password" 
-                       name="password1"
-                       value={user.password} 
-                       onChange={onChange} 
-                       className="form-control" 
-                       placeholder="Enter Password"/>
-                                <label htmlFor="password" className="sr-only">Confirm Password: </label>
-                <input type="password" 
-                       name="password2"
-                       value={user.password2} 
-                       onChange={onChange} 
-                       className="form-control" 
-                       placeholder="Confirm Password"/>
-                <label htmlFor="role" className="sr-only">Role: </label>
-                <input type="text" 
-                       name="role"
-                       value={user.role}  
-                       onChange={onChange} 
-                       className="form-control" 
-                       placeholder="Enter role (admin/user)"/>
-                <button className="btn btn-lg btn-primary btn-block" 
-                        type="submit">Register</button>
-            </form> */}
         </div>
     )
 }

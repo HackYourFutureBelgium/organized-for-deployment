@@ -4,6 +4,7 @@ import {AuthContext} from '../../Context/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Form, Row, Col, Button , Container} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 const Login = props=>{
     const [user,setUser] = useState({email: "", password : ""});
@@ -41,11 +42,11 @@ const Login = props=>{
 
 
     return(
-        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"60px auto", width: '70%', minHeight: "80vh"}} className="shadow p-3 mb-5 bg-white rounded">
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"60px auto", width: '60%', minHeight: "63vh"}} className="shadow p-3 mb-5 bg-white rounded">
              <ToastContainer />
-             <Form style= {{width: '50%', height: "70vh", margin: 'auto'}} className = "d-flex flex-column justify-content-around" onSubmit={onSubmit}>
+             <Form style= {{width: '50%', height: "50vh", margin: 'auto'}} className = "d-flex flex-column justify-content-around" onSubmit={onSubmit}>
             <Row className="justify-content-md-center">
-                <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", paddingTop:"100px"}}>SIGN IN</h2>
+                <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", paddingTop:"30px"}}>SIGN IN</h2>
             </Row>
             <Row className="d-flex flex-column justify-content-center">
             <Form.Group as={Row} controlId="email">
@@ -69,8 +70,10 @@ const Login = props=>{
                 
                 <Form.Group as={Row} className="d-flex justify-content-end">
                 <Col sm="4" className="d-flex justify-content-center">
+                <Link to="/register">
                 <Button href="/register" style={{background: '#000051', border: "none", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 35px", margin:"10px"}} size="lg"> New user?
                 </Button>
+                </Link>
                 </Col>
                 <Col sm="4" className="d-flex justify-content-center">
                 <Button style={{background: '#B71C1C', border: "none", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 35px", margin:"10px"}} type="submit" size="lg">
@@ -79,24 +82,6 @@ const Login = props=>{
                 </Col>
                 </Form.Group>
                 </Form>
-            {/* <form onSubmit={onSubmit}>
-                <h3>Please sign in</h3>
-                <label htmlFor="email" className="sr-only">Email: </label>
-                <input type="email" 
-                       name="email" 
-                       onChange={onChange} 
-                       className="form-control" 
-                       placeholder="Enter Username"/>
-                <label htmlFor="password" className="sr-only">Password: </label>
-                <input type="password" 
-                       name="password" 
-                       onChange={onChange} 
-                       className="form-control" 
-                       placeholder="Enter Password"/>
-                <button className="btn btn-lg btn-primary btn-block" 
-                        type="submit">Log in </button>
-            </form> */}
-            
         </div>
     )
 }

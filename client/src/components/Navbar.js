@@ -45,7 +45,7 @@ const Navbar = props => {
                 <li className = "nav-item" >
                     <Link to='/register'
                       className = "nav-links"
-                      onClick={closeMobileMenu} > Sing Up
+                      onClick={closeMobileMenu} > Sign Up
                       </Link>
                 </li>
             </>
