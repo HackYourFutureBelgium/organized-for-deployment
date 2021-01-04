@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import { Button } from './Button';
 import './LandingSec.css';
+import Background from "./assets/Landingpagebackground.jpg"
 
 
 function LandingSec() {
@@ -19,7 +20,7 @@ function LandingSec() {
              <h3 > If You Are School Manager And You Want To Register Your School, Please Sign Up ! </h3> 
         </div> 
         <div className="student">
-            <img src="/images/student.jpg" alt="student"/>
+            <img src={Background} alt="student"/>
         </div>
         
         </div>

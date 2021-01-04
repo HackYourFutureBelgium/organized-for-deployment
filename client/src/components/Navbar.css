@@ -40,7 +40,7 @@
 
 .nav-menu {
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(6, auto);
     grid-gap: 10px;
     list-style: none;
     text-align: center;
@@ -66,6 +66,11 @@
     border-bottom: 4px solid #fff;
     transition: all 0.2s ease-out;
     transform: scale(1.5);
+}
+
+.btn-link {
+    color: white;
+    font-size: 1.2rem;
 }
 
 .fa-bars{
