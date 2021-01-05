@@ -1,0 +1,28 @@
+.footer{
+    margin-top: 150px;
+    text-align: center;
+    height: 50px;
+    width: 100%;
+    background-color: rgb(26, 27, 77);
+}
+
+.footer>p{
+    color: white;
+    padding: 15px;
+    font-size: 80%;
+}
+
+@media screen and (max-width: 768px) {
+    .footer{
+        margin-top: 50px;
+        text-align: center;
+        height: 30px;
+        width: 100%;
+        background-color: rgb(26, 27, 77);
+    }
+    .footer>p{
+        color: white;
+        padding: 5px;
+    }
+    
+}

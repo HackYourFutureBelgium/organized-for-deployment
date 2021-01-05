@@ -1,32 +1,28 @@
 {
-  "name": "cooool",
+  "name": "MernJWT",
   "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
   "scripts": {
-    "dev": "concurrently \"npm run dev-api\" \"npm run dev-client\"",
-    "dev-api": "nodemon api/dev.js",
-    "dev-client": "cd client && npm run start",
-    "start": "node index.js",
-    "heroku-postbuild": "cd client && npm install && npm run build",
-    "test": "cd api && jest --collectCoverage=true --forceExit",
-    "test:watch": "cd api && jest --watch --collectCoverage=true --runInBand --detectOpenHandles"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
-  "license": "MIT",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "bcrypt": "^4.0.1",
-    "body-parser": "^1.19.0",
-    "cookie-parser": "^1.4.5",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-validator": "^6.9.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.11.8",
-    "mysql2": "^2.1.0",
-    "sequelize": "^6.3.3"
-  },
-  "devDependencies": {
-    "concurrently": "^5.1.0",
-    "nodemon": "^2.0.2",
-    "jest": "^25.1.0",
-    "supertest": "^4.0.2"
+    "mongoose": "^5.8.7",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0"
   }
 }

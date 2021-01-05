@@ -1,0 +1,75 @@
+.sec-container {
+    
+    height: auto;
+    min-height: 77vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    object-fit: contain;
+}
+
+.sec-container>h3 {
+    color: black;
+    font-size: 50px;
+    margin-top: -50px;
+    margin-left: 20%;
+}
+
+.student>img{
+    height: 450px;
+    width: 1000px;
+    margin-bottom: -250px;
+    margin-left: 10%;
+}
+.text {
+    margin-left: 25%;
+}
+
+.sec-btns {
+    margin-top: 32px;
+    margin-left: 15%;
+}
+
+.sec-btns .btn {
+    margin-bottom: 25px;
+    background-color: red;
+    border: 2px solid red;
+    border-radius: 5px;
+    margin-left: 30%;
+}
+
+.sec-btns .btn:hover {
+    background-color: white;
+    color: red;
+}
+
+@media screen and (max-width: 768px) {
+    .sec-container {
+         height: auto;
+        min-height: 85vh;
+    }
+    .sec-container>h3 {
+        margin-left: 10%;
+        font-size: 25px;
+        margin-top: -100px;
+    }
+    .sec-btns .btn {
+        margin-left: 10%;
+    }
+    .text {
+        margin-left: 10%;
+        font-size: 15px;
+    }
+    .btn-mobile {
+        display: block;
+        text-decoration: none;
+    }
+    .btn {
+        width: 60%;
+    }
+    .student>img{
+        width: 400px;
+        height: 300px;
+    }
+}

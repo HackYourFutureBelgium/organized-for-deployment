@@ -1,45 +1,31 @@
-// this is the main entry point for your full app
-// it serves your frontend & provides access to your API
-
 const express = require('express');
+const app = express();
+const cookieParser = require('cookie-parser');
+const mongoose = require('mongoose');
+require('dotenv').config();
+const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-
-const dbconnect = require('./api/utils/db');
-
+const User = require('./models/User');
 const School = require('./models/School');
-const comments_router = require('./api/routes/comments');
+const comments_router = require('./routes/comments');
+const dbconnect = require('./utils/db');
 
-const api = require('./api/server');
 
-const { countDocuments } = require('./models/User');
-
-const app = express();
+app.use(cookieParser());
+app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 
-// Connect Mongo DB
 
-// moved to utils/db.js
-//mongoose.connect(process.env.MONGOBD_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false }, () => console.log('connected to database'));
+const buildPath = path.join(__dirname +'/client' +'/build');
+app.use(express.static(buildPath));
+
 dbconnect();
-
 mongoose.Promise = global.Promise;
 
-
-app.use((req, res, next) => {
-    console.log(req.method + ': ' + req.path);
-    next();
-});
-
-app.use('/', express.static(__dirname + '/client/build/'))
-
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/client/build/index.html');
-});
-
-app.use('/api', api);
+const userRouter = require('./routes/User');
+app.use('/user',userRouter);
 
 // get all schools
 app.get('/schools', (req, res, next) => {
@@ -80,3 +66,4 @@ app.use('/schools/comments', comments_router.new_comment);
 
 const port = process.env.PORT || 9000;
 app.listen(port, () => console.log(`listening at http://localhost:${port}`));
+
