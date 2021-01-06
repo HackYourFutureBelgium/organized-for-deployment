@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import Schools from '../getSchools';
+import Filters from '../filterSchool';
+
+const inputStyle = {
+    display: 'flex',
+    justifyContent: 'center'
+}
 
 const SearchSchool = ()=>(
-    <h1>Search School</h1>
+    <Fragment>
+        <div style={inputStyle}>
+            <Filters />
+            <Schools />
+        </div>
+        
+    </Fragment>  
 )
 
 export default SearchSchool;
